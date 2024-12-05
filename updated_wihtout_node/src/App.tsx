@@ -4,9 +4,8 @@ import { Hero } from './components/Hero';
 import { RedFlagsList } from './components/RedFlagsList';
 import { GuardianLevels } from './components/GuardianLevels';
 import { Learn } from './components/Learn';
-import { RugPullBasics } from './components/RugPullBasics';
-import { RedFlagsDetection } from './components/RedFlagsDetection';
-import { AdvancedProtectionStrategies } from './components/AdvancedProtectionStrategies';
+import { Analyze } from './components/Analyze';
+import Leaderboard from './components/LeaderboardScreen';
 
 function App() {
   return (
@@ -20,6 +19,9 @@ function App() {
             <GuardianLevels />
           </>} />
           <Route path="/learn" element={<Learn />} />
+          <Route path="/analyze" element={<Analyze />} />
+          <Route path="/leaderboard" element={<Leaderboard />} />
+          
         </Routes>
       </div>
     </Router>
