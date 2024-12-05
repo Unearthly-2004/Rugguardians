@@ -77,29 +77,29 @@ export function Analyze() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-indigo-900 to-purple-900 text-white py-16">
+    <div className="min-h-screen bg-gradient-to-b from-indigo-900 to-purple-800 text-white py-16">
       <div className="container mx-auto px-6">
-        <h1 className="text-4xl font-bold text-center mb-8">MCQ Test: Analyze Your Knowledge</h1>
+        <h1 className="text-4xl font-bold text-center mb-12">MCQ Test: Analyze Your Knowledge</h1>
 
         <div className="space-y-8">
           {Object.keys(learningModulesQuestions).map((module) => (
             <div key={module}>
-              <h2 className="text-2xl font-semibold mb-6">{module.replace(/([A-Z])/g, ' $1').trim()}</h2>
+              <h2 className="text-3xl font-semibold text-center mb-6 text-indigo-200">{module.replace(/([A-Z])/g, ' $1').trim()}</h2>
               {learningModulesQuestions[module].map((q, index) => (
-                <div key={index} className="bg-white/10 p-6 rounded-xl backdrop-blur-lg">
-                  <h3 className="text-xl font-semibold mb-4">{q.question}</h3>
+                <div key={index} className="bg-white/10 p-8 rounded-2xl backdrop-blur-xl shadow-xl transition-all hover:bg-white/20 mb-6">
+                  <h3 className="text-xl font-medium mb-6">{q.question}</h3>
                   <div className="space-y-4">
                     {q.options.map((option, i) => (
-                      <div key={i} className="flex items-center">
+                      <div key={i} className="flex items-center justify-start space-x-4">
                         <input
                           type="radio"
                           name={`question-${module}-${index}`}
                           id={`question-${module}-${index}-option-${i}`}
                           checked={answers[module][index] === i}
                           onChange={() => handleAnswerChange(module, index, i)}
-                          className="mr-2"
+                          className="mr-3 w-5 h-5 accent-indigo-500"
                         />
-                        <label htmlFor={`question-${module}-${index}-option-${i}`} className="text-lg">{option}</label>
+                        <label htmlFor={`question-${module}-${index}-option-${i}`} className="text-lg font-light">{option}</label>
                       </div>
                     ))}
                   </div>
@@ -109,21 +109,21 @@ export function Analyze() {
           ))}
         </div>
 
-        {!submitted ? (
-          <div className="mt-8 text-center">
+        <div className="mt-10 text-center">
+          {!submitted ? (
             <button
               onClick={handleSubmit}
-              className="py-2 px-4 bg-purple-600 hover:bg-purple-700 text-white rounded-lg"
+              className="py-3 px-6 bg-purple-600 hover:bg-purple-700 text-white rounded-full text-xl transition-all transform hover:scale-105"
             >
               Submit Answers
             </button>
-          </div>
-        ) : (
-          <div className="mt-8 text-center bg-green-800 p-6 rounded-xl">
-            <h2 className="text-2xl font-semibold mb-4">Test Report</h2>
-            <p className="text-lg">{report}</p>
-          </div>
-        )}
+          ) : (
+            <div className="mt-8 bg-green-800 p-8 rounded-xl shadow-lg">
+              <h2 className="text-2xl font-semibold mb-6">Test Report</h2>
+              <p className="text-lg font-light">{report}</p>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
