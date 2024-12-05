@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { AlertTriangle, BookOpen, CheckCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+
+// Import the actual components for each module
+import { RugPullBasics } from './RugPullBasics';
+import { RedFlagsDetection } from './RedFlagsDetection';
+import { AdvancedProtectionStrategies } from './AdvancedProtectionStrategies';
 
 const learningModules = [
   {
@@ -9,26 +13,26 @@ const learningModules = [
     description: 'Understand what rug pulls are and how they work in the crypto ecosystem.',
     icon: <BookOpen className="w-12 h-12 text-purple-300" />,
     difficulty: 'Beginner',
-    path: '/learn/rug-pull-basics', // Add a unique path for each module
+    content: <RugPullBasics />, // Use the actual component here
   },
   {
     title: 'Red Flags Detection',
     description: 'Learn to identify warning signs of potential rug pulls before they happen.',
     icon: <AlertTriangle className="w-12 h-12 text-orange-300" />,
     difficulty: 'Intermediate',
-    path: '/learn/red-flags-detection',
+    content: <RedFlagsDetection />, // Use the actual component here
   },
   {
     title: 'Advanced Protection Strategies',
     description: 'Master advanced techniques to safeguard your crypto investments.',
     icon: <CheckCircle className="w-12 h-12 text-green-300" />,
     difficulty: 'Advanced',
-    path: '/learn/advanced-protection-strategies',
+    content: <AdvancedProtectionStrategies />, // Use the actual component here
   },
 ];
 
 export function Learn() {
-  const navigate = useNavigate();
+  const [selectedModule, setSelectedModule] = useState<JSX.Element | null>(null);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-indigo-900 to-purple-900 text-white py-16">
@@ -42,7 +46,7 @@ export function Learn() {
             Learn to Protect Your Crypto Investments
           </h1>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-8 mb-12">
             {learningModules.map((module) => (
               <motion.div
                 key={module.title}
@@ -66,13 +70,22 @@ export function Learn() {
                 <h3 className="text-xl font-semibold mb-2">{module.title}</h3>
                 <p className="text-purple-200 mb-4">{module.description}</p>
                 <button
-                  onClick={() => navigate(module.path)} // Navigate to the specific module's page
+                  onClick={() => setSelectedModule(module.content)} // Set the selected module content
                   className="w-full py-2 rounded-lg bg-purple-600 hover:bg-purple-700 text-white transition"
                 >
                   Learn More
                 </button>
               </motion.div>
             ))}
+          </div>
+
+          {/* Display the selected module's content */}
+          <div className="mt-8">
+            {selectedModule ? (
+              selectedModule
+            ) : (
+              <p className="text-lg text-gray-300">Please select a module to learn more.</p>
+            )}
           </div>
         </motion.div>
       </div>

@@ -8,7 +8,6 @@ import { RugPullBasics } from './components/RugPullBasics';
 import { RedFlagsDetection } from './components/RedFlagsDetection';
 import { AdvancedProtectionStrategies } from './components/AdvancedProtectionStrategies';
 
-
 function App() {
   return (
     <Router>
@@ -21,9 +20,6 @@ function App() {
             <GuardianLevels />
           </>} />
           <Route path="/learn" element={<Learn />} />
-          <Route path="/learn/rug-pull-basics" element={<RugPullBasics />} />
-          <Route path="/learn/red-flags-detection" element={<RedFlagsDetection />} />
-          <Route path="/learn/advanced-protection-strategies" element={<AdvancedProtectionStrategies />} />
         </Routes>
       </div>
     </Router>
