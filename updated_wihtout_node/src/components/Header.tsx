@@ -22,10 +22,12 @@ export function Header() {
             <Link to="/leaderboard" className="hover:text-purple-200 transition">
               Leaderboard
             </Link>
-            {/* Add Memecoin link */}
             <Link to="/memecoin" className="hover:text-purple-200 transition">
               Memecoin
             </Link>
+            <Link to="/crypto-dashboard" className="hover:text-purple-200 transition">
+              Crypto Dashboard
+            </Link> {/* New link */}
           </div>
           <Link to="/connect-wallet">
             <button className="bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded-lg transition">

@@ -1,3 +1,4 @@
+// src/components/MemecoinPage.tsx
 import React, { useState, useEffect } from 'react';
 
 interface Memecoin {
@@ -11,14 +12,12 @@ interface Memecoin {
   price_change_percentage_24h: number;
 }
 
-const MemecoinList: React.FC = () => {
+const MemecoinPage: React.FC = () => {
   const [memecoins, setMemecoins] = useState<Memecoin[]>([]);
-  const [selectedCoin, setSelectedCoin] = useState<Memecoin | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Fetch the list of memecoins
     const fetchMemecoins = async () => {
       try {
         const response = await fetch(
@@ -39,57 +38,36 @@ const MemecoinList: React.FC = () => {
     fetchMemecoins();
   }, []);
 
-  const handleCoinClick = (coin: Memecoin) => {
-    setSelectedCoin(coin);
-  };
-
-  const closeDetails = () => {
-    setSelectedCoin(null);
-  };
-
-  if (loading) return <p>Loading memecoins...</p>;
-  if (error) return <p>Error: {error}</p>;
+  if (loading) return <p className="text-center py-8">Loading memecoins...</p>;
+  if (error) return <p className="text-center py-8 text-red-500">Error: {error}</p>;
 
   return (
-    <div className="container mx-auto py-8">
-      <h1 className="text-3xl font-bold mb-6">Memecoins</h1>
+    <div className="container mx-auto py-8 px-4">
+      <h1 className="text-4xl font-extrabold text-center text-gradient mb-8">
+        Memecoins
+      </h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        {/* Display the list of memecoins in containers */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
         {memecoins.map((coin) => (
           <div
             key={coin.id}
-            className="border rounded-lg p-4 bg-white shadow cursor-pointer hover:bg-gray-100"
-            onClick={() => handleCoinClick(coin)}
+            className="border rounded-xl p-6 bg-white shadow-lg hover:shadow-2xl transition-transform transform hover:scale-105 cursor-pointer"
           >
-            <img src={coin.image} alt={coin.name} className="h-16 mx-auto" />
-            <h2 className="text-lg font-bold mt-4">{coin.name} ({coin.symbol.toUpperCase()})</h2>
-            <p className="text-sm">Price: ${coin.current_price.toFixed(2)}</p>
+            <div className="flex flex-col items-center">
+              <img src={coin.image} alt={coin.name} className="h-16 mb-4" />
+              <h2 className="text-xl font-semibold text-center mb-2">{coin.name}</h2>
+              <p className="text-sm text-gray-600">{coin.symbol.toUpperCase()}</p>
+              <p className="text-lg font-bold text-indigo-600 mt-2">${coin.current_price.toFixed(2)}</p>
+              <p className="text-sm text-gray-500 mt-2">Market Cap: ${coin.market_cap.toLocaleString()}</p>
+              <p className="text-sm text-green-500 mt-2">
+                24h Change: {coin.price_change_percentage_24h.toFixed(2)}%
+              </p>
+            </div>
           </div>
         ))}
       </div>
-
-      {/* Display detailed info if a coin is selected */}
-      {selectedCoin && (
-        <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center z-10">
-          <div className="bg-white p-6 rounded-lg max-w-lg w-full">
-            <h2 className="text-2xl font-bold mb-4">{selectedCoin.name} ({selectedCoin.symbol.toUpperCase()})</h2>
-            <img src={selectedCoin.image} alt={selectedCoin.name} className="h-24 mx-auto mb-4" />
-            <p><strong>Price:</strong> ${selectedCoin.current_price.toFixed(2)}</p>
-            <p><strong>Market Cap:</strong> ${selectedCoin.market_cap.toLocaleString()}</p>
-            <p><strong>Total Volume:</strong> ${selectedCoin.total_volume.toLocaleString()}</p>
-            <p><strong>24h Change:</strong> {selectedCoin.price_change_percentage_24h.toFixed(2)}%</p>
-            <button
-              className="mt-4 text-white bg-red-600 hover:bg-red-700 py-2 px-4 rounded-lg"
-              onClick={closeDetails}
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
 
-export default MemecoinList;
+export default MemecoinPage;

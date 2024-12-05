@@ -7,8 +7,9 @@ import { GuardianLevels } from './components/GuardianLevels';
 import { Learn } from './components/Learn';
 import { Analyze } from './components/Analyze';
 import Leaderboard from './components/LeaderboardScreen';
-import ConnectWalletPage from './components/ConnectWalletPage'; // Import new page
-import MemecoinPage from './components/MemecoinPage'; // Import Memecoin page
+import ConnectWalletPage from './components/ConnectWalletPage';
+import MemecoinPage from './components/MemecoinPage';
+import CryptoDashboard from './components/CryptoDashboard';  // Import new page
 
 function App() {
   return (
@@ -25,7 +26,8 @@ function App() {
           <Route path="/analyze" element={<Analyze />} />
           <Route path="/leaderboard" element={<Leaderboard />} />
           <Route path="/connect-wallet" element={<ConnectWalletPage />} />
-          <Route path="/memecoin" element={<MemecoinPage />} /> {/* New route */}
+          <Route path="/memecoin" element={<MemecoinPage />} />
+          <Route path="/crypto-dashboard" element={<CryptoDashboard />} /> {/* New route */}
         </Routes>
       </div>
     </Router>
