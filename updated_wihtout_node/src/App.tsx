@@ -1,5 +1,4 @@
 // src/App.tsx
-
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
@@ -9,6 +8,7 @@ import { Learn } from './components/Learn';
 import { Analyze } from './components/Analyze';
 import Leaderboard from './components/LeaderboardScreen';
 import ConnectWalletPage from './components/ConnectWalletPage'; // Import new page
+import MemecoinPage from './components/MemecoinPage'; // Import Memecoin page
 
 function App() {
   return (
@@ -24,7 +24,8 @@ function App() {
           <Route path="/learn" element={<Learn />} />
           <Route path="/analyze" element={<Analyze />} />
           <Route path="/leaderboard" element={<Leaderboard />} />
-          <Route path="/connect-wallet" element={<ConnectWalletPage />} /> {/* New route */}
+          <Route path="/connect-wallet" element={<ConnectWalletPage />} />
+          <Route path="/memecoin" element={<MemecoinPage />} /> {/* New route */}
         </Routes>
       </div>
     </Router>

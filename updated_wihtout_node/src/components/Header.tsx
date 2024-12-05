@@ -1,5 +1,4 @@
 // src/components/Header.tsx
-
 import React from 'react';
 import { Shield } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -22,6 +21,10 @@ export function Header() {
             </Link>
             <Link to="/leaderboard" className="hover:text-purple-200 transition">
               Leaderboard
+            </Link>
+            {/* Add Memecoin link */}
+            <Link to="/memecoin" className="hover:text-purple-200 transition">
+              Memecoin
             </Link>
           </div>
           <Link to="/connect-wallet">
