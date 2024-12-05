@@ -9,7 +9,7 @@ export function Header() {
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center space-x-2">
             <Shield className="w-8 h-8" />
-            <span className="text-xl font-bold">Crypto Guardian</span>
+            <span className="text-xl font-bold">Rug Guardian</span>
           </Link>
           <div className="hidden md:flex space-x-6">
             <Link to="/learn" className="hover:text-purple-200 transition">Learn</Link>
